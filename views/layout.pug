@@ -1,0 +1,83 @@
+html
+  head
+    title Kek of Shadows
+    script(src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.78.0/dist/index.min.js")
+    script(src="/wasm_game.js")
+    script(src="/client.js")
+    style.
+      body { font-family: Arial, sans-serif; background: #1a1a1a; color: #fff; }
+      #ui-window { max-width: 1000px; margin: 0 auto; padding: 20px; display: flex; }
+      #game-window { border: 2px solid #444; width: 600px; height: 400px; }
+      #character-form, #skills-menu, #equipment-window { margin-left: 20px; }
+      #combat-log { margin-top: 10px; }
+      button { margin: 5px; padding: 5px 10px; }
+      .hidden { display: none; }
+      #skill-tree-controls { margin-top: 10px; }
+      #player-info { margin-top: 10px; }
+      #item-controls { margin-top: 10px; }
+  body
+    #ui-window
+      div
+        h1 Kek of Shadows
+        #game-window
+          canvas#game-canvas(width="600" height="400")
+        #combat-log
+        button#explore Explore
+        button#move-up Move Up
+        button#move-down Move Down
+        button#move-left Move Left
+        button#move-right Move Right
+        select#location
+          option(value="Town") Town (Non-PvP)
+          option(value="Temple") Temple (Non-PvP)
+          option(value="Building") Building (Non-PvP)
+          option(value="Wilderness") Wilderness (PvP)
+          option(value="HuntingGround") Hunting Ground (PvP)
+          option(value="BossArea") Boss Area (PvP)
+          option(value="QuestArea") Quest Area (PvP)
+          option(value="Castle") Castle (PvP)
+          option(value="Island") Island (PvP)
+        #skill-tree-controls.hidden
+          label(for="node-id") Unlock Node ID:
+          input#node-id(type="number" min="0")
+          button#unlock-node Unlock Node
+        #item-controls.hidden
+          label(for="item-id") Equip Item ID:
+          input#item-id(type="number" min="1")
+          button#equip-item Equip Item
+        #player-info.hidden
+          h3 Player Info
+          p#player-details
+      #character-form
+        h2 Create Character
+        label(for="wallet") Wallet Address:
+        input#wallet(type="text" readonly)
+        button#connect-wallet Connect Wallet
+        label(for="name") Name:
+        input#name(type="text")
+        label(for="race") Race:
+        select#race
+          option(value="Human") Human
+          option(value="Elf") Elf
+          option(value="Dwarf") Dwarf
+          option(value="Orc") Orc
+        label(for="profession") Profession:
+        select#profession
+          option(value="Warrior") Warrior
+          option(value="Mage") Mage
+          option(value="Archer") Archer
+          option(value="Blacksmith") Blacksmith
+        button#create-character Create Character
+      #skills-menu.hidden
+        h2 Stats & Skills
+        h3 Base Stats
+        p#base-stats
+        h3 Skills
+        p#skills
+        h3 Other Stats
+        p#other-stats
+      #equipment-window.hidden
+        h2 Equipment
+        p#equipment
+      button#toggle-skills Skills
+      button#toggle-skill-tree Skill Tree
