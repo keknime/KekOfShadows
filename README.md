@@ -30,43 +30,43 @@
 
 ### Installation
 1. **Clone the Repository**
-   BACKTICKSbash
+   ```bash
    git clone https://github.com/your-username/kek-of-shadows.git
    cd kek-of-shadows
-   BACKTICKS
+   ```
 
 2. **Install Rust Dependencies**
-   BACKTICKSbash
+   ```bash
    cargo build --target wasm32-unknown-unknown --release
    wasm-pack build --target web --out-dir public --out-name wasm_game
-   BACKTICKS
+   ```
 
 3. **Install Node.js Dependencies**
-   BACKTICKSbash
+   ```bash
    npm install
-   BACKTICKS
+   ```
 
 4. **Set Up Solana**
    - Configure Solana CLI for the devnet:
-     BACKTICKSbash
+     ```bash
      solana config set --url https://api.devnet.solana.com
-     BACKTICKS
+     ```
    - Deploy the Solana program:
-     BACKTICKSbash
+     ```bash
      cd programs/kek_of_shadows
      anchor build
      anchor deploy
-     BACKTICKS
+     ```
 
 5. **Run the Server**
-   BACKTICKSbash
+   ```bash
    node server.js
-   BACKTICKS
+   ```
 
 6. **Run the WebSocket Server**
-   BACKTICKSbash
+   ```bash
    node websocket.js
-   BACKTICKS
+   ```
 
 7. **Access the Game**
    - Open `http://localhost:3000` in a browser.
