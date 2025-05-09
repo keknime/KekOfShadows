@@ -78,25 +78,45 @@
 
 ## Project Structure
 kek-of-shadows/
+
 ├── public/                 # Static files (WASM, JS, JSON data)
+
 │   ├── maps/              # Map JSON files
+
 │   ├── game_data.json     # Items and monsters
+
 │   ├── skill_tree.json    # Skill tree configuration
+
 │   ├── wasm_game.js       # WebAssembly bindings
+
 │   └── map_editor.html    # Map editor UI
+
 ├── src/                   # Rust game logic
+
 │   └── lib.rs             # Core game logic
+
 ├── programs/              # Solana program
+
 │   └── kek_of_shadows/
+
 │       └── src/
+
 │           └── lib.rs     # Solana Anchor program
+
 ├── views/                 # Pug templates
+
 │   └── layout.pug         # Main game UI
+
 ├── server.js              # Express server
+
 ├── websocket.js           # WebSocket server
+
 ├── client.js              # Client-side JavaScript
+
 ├── .gitignore             # Git ignore rules
+
 ├── LICENSE                # MIT License
+
 └── README.md              # This file
 
 ## Contributing
