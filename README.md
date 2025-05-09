@@ -138,7 +138,7 @@ This project is licensed under the [MIT License](LICENSE).
 - Enhance visuals with sprite sheets and audio.
 
 ## Contact
-For questions or feedback, open an issue on GitHub or reach out to [your-username].
+For questions or feedback, open an issue on GitHub or reach out to x.com/keknime.
 
 ---
 Built with 💻 and ⚔️ for the Solana and Rust communities!
