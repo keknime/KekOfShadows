@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kek of Shadows Map Editor</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #1a1a1a; color: #fff; }
+        #editor { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        #map-canvas { border: 2px solid #444; }
+        button, select, input { margin: 5px; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <div id="editor">
+        <h1>Kek of Shadows Map Editor</h1>
+        <canvas id="map-canvas" width="600" height="400"></canvas>
+        <div>
+            <label for="map-width">Width:</label>
+            <input id="map-width" type="number" value="10" min="1">
+            <label for="map-height">Height:</label>
+            <input id="map-height" type="number" value="10" min="1">
+            <button id="resize-map">Resize Map</button>
+        </div>
+        <div>
+            <label for="tile-type">Tile Type:</label>
+            <select id="tile-type">
+                <option value="grass">Grass</option>
+                <option value="stone">Stone</option>
+                <option value="water">Water</option>
+            </select>
+            <label for="collision">Collision:</label>
+            <input id="collision" type="checkbox">
+        </div>
+        <div>
+            <label for="map-name">Map Name:</label>
+            <input id="map-name" type="text" value="new_map">
+            <button id="save-map">Save Map</button>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('map-canvas');
+        const ctx = canvas.getContext('2d');
+        let map = {
+            width: 10,
+            height: 10,
+            tiles: Array(10).fill().map(() => Array(10).fill('grass')),
+            collisions: Array(10).fill().map(() => Array(10).fill(false)),
+        };
+        const tileSize = 32;
+
+        function drawMap() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let y = 0; y < map.height; y++) {
+                for (let x = 0; x < map.width; x++) {
+                    const tile = map.tiles[y][x];
+                    ctx.fillStyle = tile === 'grass' ? 'green' : tile === 'stone' ? 'gray' : 'blue';
+                    const cx = (x - y) * tileSize / 2 + canvas.width / 2;
+                    const cy = (x + y) * tileSize / 4 + canvas.height / 4;
+                    ctx.beginPath();
+                    ctx.moveTo(cx, cy - tileSize / 4);
+                    ctx.lineTo(cx + tileSize / 2, cy);
+                    ctx.lineTo(cx, cy + tileSize / 4);
+                    ctx.lineTo(cx - tileSize / 2, cy);
+                    ctx.closePath();
+                    ctx.fill();
+                    if (map.collisions[y][x]) {
+                        ctx.strokeStyle = 'red';
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        document.getElementById('resize-map').addEventListener('click', () => {
+            const width = parseInt(document.getElementById('map-width').value);
+            const height = parseInt(document.getElementById('map-height').value);
+            map.width = width;
+            map.height = height;
+            map.tiles = Array(height).fill().map(() => Array(width).fill('grass'));
+            map.collisions = Array(height).fill().map(() => Array(width).fill(false));
+            drawMap();
+        });
+
+        canvas.addEventListener('click', (event) => {
+            const rect = canvas.getBoundingClientRect();
+            const mx = event.clientX - rect.left;
+            const my = event.clientY - rect.top;
+            const tileX = Math.floor((mx - canvas.width / 2) / tileSize + (my - canvas.height / 4) / (tileSize / 2));
+            const tileY = Math.floor((my - canvas.height / 4) / (tileSize / 2) - (mx - canvas.width / 2) / tileSize);
+            if (tileX >= 0 && tileX < map.width && tileY >= 0 && tileY < map.height) {
+                map.tiles[tileY][tileX] = document.getElementById('tile-type').value;
+                map.collisions[tileY][tileX] = document.getElementById('collision').checked;
+                drawMap();
+            }
+        });
+
+        document.getElementById('save-map').addEventListener('click', () => {
+            const mapName = document.getElementById('map-name').value;
+            const blob = new Blob([JSON.stringify(map, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `maps/${mapName}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        drawMap();
+    </script>
+</body>
+</html>
