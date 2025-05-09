@@ -1,0 +1,26 @@
+{
+  "world": {
+    "name": "Kek of Shadows",
+    "history": "In the ancient realm of Kek, a shadow fell when the Dark Shard shattered, unleashing chaos. Four races—Humans, Elves, Dwarves, and Orcs—unite to restore balance.",
+    "factions": [
+      {
+        "name": "Order of Light",
+        "description": "Defenders of peace, led by Humans and Elves."
+      },
+      {
+        "name": "Iron Clan",
+        "description": "Dwarven and Orcish warriors seeking dominance."
+      }
+    ]
+  },
+  "locations": [
+    {
+      "name": "Town",
+      "description": "A bustling hub of trade and safety, protected by ancient wards."
+    },
+    {
+      "name": "Wilderness",
+      "description": "A dangerous land where Goblins and Wolves roam freely."
+    }
+  ]
+}

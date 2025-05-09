@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Slay the Goblin Menace",
+        "description": "Defeat 5 Goblins in the Wilderness.",
+        "objectives": [
+            {
+                "type": "kill",
+                "monster_id": 1,
+                "count": 5
+            }
+        ],
+        "rewards": {
+            "exp": 50,
+            "gold": 100,
+            "items": [
+                { "item_id": 3, "quantity": 1 }
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "name": "Gather Resources",
+        "description": "Collect 10 Iron Ores by mining.",
+        "objectives": [
+            {
+                "type": "collect",
+                "item_id": 5,
+                "count": 10
+            }
+        ],
+        "rewards": {
+            "exp": 30,
+            "gold": 50,
+            "items": []
+        }
+    }
+]
